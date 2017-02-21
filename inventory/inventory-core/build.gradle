@@ -43,7 +43,7 @@ apply plugin: "java"
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    // 'src/main/test' depends on the follows:
+    // 'src/test/java' depends on the follows:
     testCompile group: "junit", name: "junit",  version: "${junit4Version}"
 }
 
