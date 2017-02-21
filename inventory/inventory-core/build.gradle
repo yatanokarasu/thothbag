@@ -30,7 +30,10 @@ repositories {
 
 
 ext {
-    junit4Version = "4.12"
+    junit4Version       = "4.12"
+    
+    sourceJdkVersion    = "1.8"
+    targetJdkVersion    = "1.8"
 }
 
 
@@ -42,4 +45,20 @@ apply plugin: "java"
 dependencies {
     // 'src/main/test' depends on the follows:
     testCompile group: "junit", name: "junit",  version: "${junit4Version}"
+}
+
+
+//===============================================
+// Tasks
+//===============================================
+
+compileJava {
+    sourceCompatibility = "${sourceJdkVersion}"
+    targetCompatibility = "${targetJdkVersion}"
+}
+
+
+task wrapper(type: Wrapper) {
+    description     = 'Generates gradlew[.bat] scripts'
+    gradleVersion   = '3.3'
 }
