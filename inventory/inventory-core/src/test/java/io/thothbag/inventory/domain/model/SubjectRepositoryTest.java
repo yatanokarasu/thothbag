@@ -31,7 +31,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import io.thothbag.inventory.infrastructure.persistence.SubjectRepository;
+import io.thothbag.inventory.infrastructure.persistence.InMemorySubjectRepository;
 
 
 /**
@@ -52,16 +52,16 @@ public class SubjectRepositoryTest {
      */
     @Before
     public void setUp() {
-        this.setSubjectRepository(new SubjectRepository());
+        this.setSubjectRepository(new InMemorySubjectRepository());
     }
-
-
+    
+    
     /**
      * Test case of {@link SubjectRepository#addSubject(Subject)}.
      * 
      */
     @Test
-    public void addSubject() {
+    public void saveAndFindAllSubject() {
         SubjectRepository repository = this.subjectRepository();
         assertThat(repository.allSubjects().size(), is(0));
         
