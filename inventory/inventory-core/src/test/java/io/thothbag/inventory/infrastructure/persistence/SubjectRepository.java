@@ -21,23 +21,36 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package io.thothbag.inventory.domain.model;
+package io.thothbag.inventory.infrastructure.persistence;
 
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import io.thothbag.inventory.domain.model.Subject;
+
 
 /**
  * 
  */
-final class SubjectRepository {
+public class SubjectRepository {
+    
+    private final Collection<Subject> storage;
+    
+    
+    /**
+     * 
+     */
+    public SubjectRepository() {
+        this.storage = new ArrayList<>();
+    }
+    
     
     /**
      * @param subject new Subject
      */
     public void addSubject(Subject subject) {
-        // TODO Auto-generated method stub
+        this.storage.add(subject);
     }
     
     
@@ -45,12 +58,7 @@ final class SubjectRepository {
      * @return all subject in thothbag inventory
      */
     public Collection<Subject> allSubjects() {
-        return new ArrayList<Subject>() {
-            private static final long serialVersionUID = -7557670666610143129L;
-            {
-                add(new Subject());
-            }
-        };
+        return this.storage;
     }
     
 }

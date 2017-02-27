@@ -28,7 +28,10 @@ import static org.hamcrest.CoreMatchers.is;
 
 import static org.junit.Assert.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import io.thothbag.inventory.infrastructure.persistence.SubjectRepository;
 
 
 /**
@@ -38,26 +41,48 @@ import org.junit.Test;
 public class SubjectRepositoryTest {
     
     /**
+     * A {@link SubjectRepository} instance.
+     * 
+     */
+    private SubjectRepository subjectRepository;
+    
+    
+    /**
+     * 
+     */
+    @Before
+    public void setUp() {
+        this.setSubjectRepository(new SubjectRepository());
+    }
+
+
+    /**
      * Test case of {@link SubjectRepository#addSubject(Subject)}.
      * 
      */
     @Test
     public void addSubject() {
         SubjectRepository repository = this.subjectRepository();
-        Subject subject = this.subjectAggregate();
+        assertThat(repository.allSubjects().size(), is(0));
         
+        Subject subject = this.subjectAggregate();
         repository.addSubject(subject);
         assertThat(this.subjectRepository().allSubjects().size(), is(1));
     }
     
     
     private SubjectRepository subjectRepository() {
-        return new SubjectRepository();
+        return this.subjectRepository;
     }
     
     
     private Subject subjectAggregate() {
         return new Subject();
+    }
+    
+    
+    private void setSubjectRepository(final SubjectRepository subjectRepository) {
+        this.subjectRepository = subjectRepository;
     }
     
 }

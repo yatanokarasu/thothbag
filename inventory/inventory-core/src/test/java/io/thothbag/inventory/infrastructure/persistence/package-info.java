@@ -21,12 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package io.thothbag.inventory.domain.model;
-
-
 /**
  * 
  */
-public final class Subject {
-    //
-}
+package io.thothbag.inventory.infrastructure.persistence;
