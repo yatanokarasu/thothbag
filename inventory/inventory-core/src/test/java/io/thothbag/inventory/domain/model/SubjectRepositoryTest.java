@@ -61,7 +61,7 @@ public class SubjectRepositoryTest {
      * 
      */
     @Test
-    public void saveAndFindAllSubject() {
+    public void saveAndFindAllSubjects() {
         SubjectRepository repository = this.subjectRepository();
         assertThat(repository.allSubjects().size(), is(0));
         
