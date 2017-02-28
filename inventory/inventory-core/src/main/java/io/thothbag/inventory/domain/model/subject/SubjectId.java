@@ -21,57 +21,18 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package io.thothbag.inventory.infrastructure.persistence;
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import io.thothbag.inventory.domain.model.Subject;
-import io.thothbag.inventory.domain.model.SubjectRepository;
-import io.thothbag.inventory.domain.model.subject.SubjectId;
+package io.thothbag.inventory.domain.model.subject;
 
 
 /**
  * 
  */
-public class InMemorySubjectRepository implements SubjectRepository {
-    
-    private final Collection<Subject> storage;
-    
+public class SubjectId {
     
     /**
-     * 
+     * @param subjectId subject ID
      */
-    public InMemorySubjectRepository() {
-        this.storage = new ArrayList<>();
-    }
-    
-    
-    /**
-     * @see io.thothbag.inventory.domain.model.SubjectRepository#addSubject(io.thothbag.inventory.domain.model.Subject)
-     */
-    @Override
-    public void addSubject(Subject subject) {
-        this.storage.add(subject);
-    }
-    
-    
-    /**
-     * @see io.thothbag.inventory.domain.model.SubjectRepository#allSubjects()
-     */
-    @Override
-    public Collection<Subject> allSubjects() {
-        return this.storage;
-    }
-    
-    
-    /**
-     * @see io.thothbag.inventory.domain.model.SubjectRepository#subjectOfId(io.thothbag.inventory.domain.model.subject.SubjectId)
-     */
-    @Override
-    public Subject subjectOfId(SubjectId subjectId) {
-        return null;
+    public SubjectId(final String subjectId) {
     }
     
 }

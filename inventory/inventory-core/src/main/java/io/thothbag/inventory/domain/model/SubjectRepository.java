@@ -26,6 +26,8 @@ package io.thothbag.inventory.domain.model;
 
 import java.util.Collection;
 
+import io.thothbag.inventory.domain.model.subject.SubjectId;
+
 
 /**
  * 
@@ -42,5 +44,12 @@ public interface SubjectRepository {
      * @return all subject in thothbag inventory
      */
     Collection<Subject> allSubjects();
+    
+    
+    /**
+     * @param subjectId
+     * @return A subject of specified {@link SubjectId}
+     */
+    Subject subjectOfId(SubjectId subjectId);
     
 }

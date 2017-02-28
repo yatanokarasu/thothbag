@@ -26,11 +26,13 @@ package io.thothbag.inventory.domain.model;
 
 import static org.hamcrest.CoreMatchers.is;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import io.thothbag.inventory.domain.model.subject.SubjectId;
 import io.thothbag.inventory.infrastructure.persistence.InMemorySubjectRepository;
 
 
@@ -68,6 +70,16 @@ public class SubjectRepositoryTest {
         Subject subject = this.subjectAggregate();
         repository.addSubject(subject);
         assertThat(this.subjectRepository().allSubjects().size(), is(1));
+    }
+    
+    
+    /**
+     * Test case of {@link SubjectRepository#subjectOfId(SubjectId)}
+     * 
+     */
+    @Test
+    public void saveAndOneSubject() {
+        assertNull(this.subjectRepository.subjectOfId(new SubjectId("subject_id")));
     }
     
     
