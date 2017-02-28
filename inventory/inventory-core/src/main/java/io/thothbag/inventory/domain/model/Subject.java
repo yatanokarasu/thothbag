@@ -23,10 +23,18 @@
  */
 package io.thothbag.inventory.domain.model;
 
+import io.thothbag.inventory.domain.model.subject.SubjectId;
 
 /**
  * 
  */
 public final class Subject {
+
+    /**
+     * @return id of this subject
+     */
+    public SubjectId subjectId() {
+        return new SubjectId("subject_id");
+    }
     //
 }

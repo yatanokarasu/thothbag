@@ -23,16 +23,37 @@
  */
 package io.thothbag.inventory.domain.model.subject;
 
-
 /**
  * 
  */
 public class SubjectId {
     
+    private final String subjectId;
+    
+    
     /**
      * @param subjectId subject ID
      */
     public SubjectId(final String subjectId) {
+        this.subjectId = subjectId;
+    }
+    
+    
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        return true;
+    }
+
+
+    /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        return this.subjectId.hashCode();
     }
     
 }

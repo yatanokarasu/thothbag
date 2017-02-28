@@ -24,8 +24,9 @@
 package io.thothbag.inventory.infrastructure.persistence;
 
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.thothbag.inventory.domain.model.Subject;
 import io.thothbag.inventory.domain.model.SubjectRepository;
@@ -37,14 +38,14 @@ import io.thothbag.inventory.domain.model.subject.SubjectId;
  */
 public class InMemorySubjectRepository implements SubjectRepository {
     
-    private final Collection<Subject> storage;
+    private final Map<SubjectId, Subject> storage;
     
     
     /**
      * 
      */
     public InMemorySubjectRepository() {
-        this.storage = new ArrayList<>();
+        this.storage = new HashMap<>();
     }
     
     
@@ -53,7 +54,7 @@ public class InMemorySubjectRepository implements SubjectRepository {
      */
     @Override
     public void addSubject(Subject subject) {
-        this.storage.add(subject);
+        this.storage.put(subject.subjectId(), subject);
     }
     
     
@@ -62,7 +63,7 @@ public class InMemorySubjectRepository implements SubjectRepository {
      */
     @Override
     public Collection<Subject> allSubjects() {
-        return this.storage;
+        return this.storage.values();
     }
     
     
@@ -71,7 +72,12 @@ public class InMemorySubjectRepository implements SubjectRepository {
      */
     @Override
     public Subject subjectOfId(SubjectId subjectId) {
-        return null;
+        return this.repository().get(subjectId);
+    }
+    
+    
+    private Map<SubjectId, Subject> repository() {
+        return this.storage;
     }
     
 }

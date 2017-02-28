@@ -26,6 +26,7 @@ package io.thothbag.inventory.domain.model;
 
 import static org.hamcrest.CoreMatchers.is;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
@@ -80,6 +81,9 @@ public class SubjectRepositoryTest {
     @Test
     public void saveAndOneSubject() {
         assertNull(this.subjectRepository.subjectOfId(new SubjectId("subject_id")));
+        
+        this.subjectRepository().addSubject(new Subject());
+        assertNotNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id")));
     }
     
     
