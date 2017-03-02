@@ -24,6 +24,7 @@
 package io.thothbag.inventory.domain.model;
 
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 
 import static org.junit.Assert.assertNotNull;
@@ -68,7 +69,7 @@ public class SubjectRepositoryTest {
         SubjectRepository repository = this.subjectRepository();
         assertThat(repository.allSubjects().size(), is(0));
         
-        Subject subject = this.subjectAggregate();
+        Subject subject = new Subject(new SubjectId("subject_id"));
         repository.addSubject(subject);
         assertThat(this.subjectRepository().allSubjects().size(), is(1));
     }
@@ -80,20 +81,27 @@ public class SubjectRepositoryTest {
      */
     @Test
     public void saveAndOneSubject() {
-        assertNull(this.subjectRepository.subjectOfId(new SubjectId("subject_id")));
+        assertNull(this.subjectRepository.subjectOfId(new SubjectId("subject_id1")));
         
-        this.subjectRepository().addSubject(new Subject());
-        assertNotNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id")));
+        Subject fixture1 = new Subject(new SubjectId("subject_id1"));
+        this.subjectRepository().addSubject(fixture1);
+        assertNotNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id1")));
+        assertNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id2")));
+        assertThat(
+            this.subjectRepository().subjectOfId(new SubjectId("subject_id1")).subjectId(),
+            equalTo(fixture1.subjectId()));
+        
+        Subject fixture2 = new Subject(new SubjectId("subject_id2"));
+        this.subjectRepository().addSubject(fixture2);
+        assertNotNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id2")));
+        assertThat(
+            this.subjectRepository().subjectOfId(new SubjectId("subject_id2")).subjectId(),
+            equalTo(fixture2));
     }
     
     
     private SubjectRepository subjectRepository() {
         return this.subjectRepository;
-    }
-    
-    
-    private Subject subjectAggregate() {
-        return new Subject();
     }
     
     
