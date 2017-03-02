@@ -38,14 +38,14 @@ import io.thothbag.inventory.domain.model.subject.SubjectId;
  */
 public class InMemorySubjectRepository implements SubjectRepository {
     
-    private final Map<SubjectId, Subject> storage;
+    private final Map<SubjectId, Subject> repository;
     
     
     /**
      * 
      */
     public InMemorySubjectRepository() {
-        this.storage = new HashMap<>();
+        this.repository = new HashMap<>();
     }
     
     
@@ -54,7 +54,7 @@ public class InMemorySubjectRepository implements SubjectRepository {
      */
     @Override
     public void addSubject(Subject subject) {
-        this.storage.put(subject.subjectId(), subject);
+        this.repository.put(subject.subjectId(), subject);
     }
     
     
@@ -63,7 +63,7 @@ public class InMemorySubjectRepository implements SubjectRepository {
      */
     @Override
     public Collection<Subject> allSubjects() {
-        return this.storage.values();
+        return this.repository.values();
     }
     
     
@@ -77,7 +77,7 @@ public class InMemorySubjectRepository implements SubjectRepository {
     
     
     private Map<SubjectId, Subject> repository() {
-        return this.storage;
+        return this.repository;
     }
     
 }
