@@ -66,11 +66,10 @@ public class SubjectRepositoryTest {
      */
     @Test
     public void saveAndFindAllSubjects() {
-        SubjectRepository repository = this.subjectRepository();
+        final SubjectRepository repository = this.subjectRepository();
         assertThat(repository.allSubjects().size(), is(0));
         
-        Subject subject = new Subject(new SubjectId("subject_id"));
-        repository.addSubject(subject);
+        repository.addSubject(new Subject(repository.nextIdentity()));
         assertThat(this.subjectRepository().allSubjects().size(), is(1));
     }
     
@@ -81,22 +80,23 @@ public class SubjectRepositoryTest {
      */
     @Test
     public void saveAndOneSubject() {
-        assertNull(this.subjectRepository.subjectOfId(new SubjectId("subject_id1")));
+        final SubjectId firstId = this.subjectRepository().nextIdentity();
+        final SubjectId secondId = this.subjectRepository().nextIdentity();
+        assertNull(this.subjectRepository().subjectOfId(firstId));
+        assertNull(this.subjectRepository().subjectOfId(secondId));
         
-        Subject fixture1 = new Subject(new SubjectId("subject_id1"));
-        this.subjectRepository().addSubject(fixture1);
-        assertNotNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id1")));
-        assertNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id2")));
+        this.subjectRepository().addSubject(new Subject(firstId));
+        assertNotNull(this.subjectRepository().subjectOfId(firstId));
+        assertNull(this.subjectRepository().subjectOfId(secondId));
         assertThat(
-            this.subjectRepository().subjectOfId(new SubjectId("subject_id1")).subjectId(),
-            equalTo(fixture1.subjectId()));
+            this.subjectRepository().subjectOfId(firstId).subjectId(),
+            equalTo(firstId));
         
-        Subject fixture2 = new Subject(new SubjectId("subject_id2"));
-        this.subjectRepository().addSubject(fixture2);
-        assertNotNull(this.subjectRepository().subjectOfId(new SubjectId("subject_id2")));
+        this.subjectRepository().addSubject(new Subject(secondId));
+        assertNotNull(this.subjectRepository().subjectOfId(secondId));
         assertThat(
-            this.subjectRepository().subjectOfId(new SubjectId("subject_id2")).subjectId(),
-            equalTo(fixture2));
+            this.subjectRepository().subjectOfId(secondId).subjectId(),
+            equalTo(secondId));
     }
     
     

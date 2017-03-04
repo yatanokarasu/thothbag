@@ -27,6 +27,7 @@ package io.thothbag.inventory.infrastructure.persistence;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import io.thothbag.inventory.domain.model.Subject;
 import io.thothbag.inventory.domain.model.SubjectRepository;
@@ -64,6 +65,14 @@ public class InMemorySubjectRepository implements SubjectRepository {
     @Override
     public Collection<Subject> allSubjects() {
         return this.repository.values();
+    }
+    
+    
+    /**
+     * @see io.thothbag.inventory.domain.model.SubjectRepository#nextIdentity()
+     */
+    public SubjectId nextIdentity() {
+        return new SubjectId(UUID.randomUUID().toString().toUpperCase());
     }
     
     

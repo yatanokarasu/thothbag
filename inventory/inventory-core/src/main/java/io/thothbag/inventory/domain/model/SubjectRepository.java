@@ -47,6 +47,12 @@ public interface SubjectRepository {
     
     
     /**
+     * @return an identity for new subject
+     */
+    SubjectId nextIdentity();
+    
+    
+    /**
      * @param subjectId
      * @return A subject of specified {@link SubjectId}
      */
