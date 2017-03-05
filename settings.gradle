@@ -24,6 +24,7 @@
 
 // To declare projects as part of a multi-project build use the 'include' method
 include ':inventory:inventory-core'
+include ':inventory:web-ui'
 
 rootProject.name = 'thothbag'
 
