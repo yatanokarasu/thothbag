@@ -3,6 +3,7 @@
 hs_err_pid*
 
 # Java build directories
+bin/
 build/
 target/
 
