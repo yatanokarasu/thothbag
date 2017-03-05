@@ -53,6 +53,6 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // JSF
-    runtime group: 'com.sun.faces', name: 'jsf-api',  version: '2.2.13'
-    runtime group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.13'
+    compile group: 'com.sun.faces', name: 'jsf-api',  version: '2.2.13'
+    compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.13'
 }
