@@ -39,8 +39,9 @@ buildscript {
 
 
 gretty {
-  contextPath       = 'thothbag'
-  servletContainer  = 'jetty9'
+    contextPath       = 'thothbag'
+    servletContainer  = 'jetty9'
+    fileLogEnabled    = false
 }
 
 
@@ -55,4 +56,14 @@ dependencies {
     // JSF
     compile group: 'com.sun.faces', name: 'jsf-api',  version: '2.2.13'
     compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.13'
+    
+    // Prettyfaces
+    compile group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet',            version: '3.4.1.Final'
+    compile group: 'org.ocpsoft.rewrite', name: 'rewrite-config-prettyfaces', version: '3.4.1.Final'
 }
+
+
+// Java plugin properties
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
